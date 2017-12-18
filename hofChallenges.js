@@ -1,7 +1,11 @@
 /* 
 1. Write a function that returns a function that prints "hello world"
 */
-function higherOrderHelloWorld() {}
+function higherOrderHelloWorld() {
+  return function(hello){
+    console.log("hello world");
+  }
+}
 
 // Tests for #1
 higherOrderHelloWorld()(); // hello world
@@ -16,7 +20,11 @@ that returns a function that takes another number,
 that returns the sum of the two numbers
 */
 
-function higherOrderSum() {}
+function higherOrderSum(first) {
+  return function anotherNum (second){
+    return (first + second);
+  }
+}
 
 // Tests for #2
 higherOrderSum(5)(10); // 15
@@ -32,7 +40,11 @@ that returns a function that takes a name OR just says "Stranger"
 by default
 */
 
-function higherOrderGreet() {}
+function higherOrderGreet(name) {
+  return function greeting() {
+    console.log ("hey there" + name);
+  }
+}
 
 // Tests for #3
 higherOrderGreet()(); // Hello Stranger
