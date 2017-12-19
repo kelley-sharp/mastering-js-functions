@@ -3,7 +3,12 @@
 over a 'count' variable that increments each time
 */
 
-function closureCounter() {}
+function closureCounter() {
+  var count = 0
+  return function increment(){
+    return ++count;
+  }
+}
 
 // Tests for #1
 closureCounter()(); // 1
@@ -26,7 +31,26 @@ firstCounter(); // 3
       getAll - return a copy of the private array
 */
 
-function itemModule() {}
+
+function itemModule() {
+  var items = [];
+  return {
+    addItem: function(item) {
+      items.push(item);
+      return item; 
+    },
+    removeItemAt: function(i) {
+      return items.splice(i,1)[0];
+    },
+    getItemAt: function(i){
+      return items[i];
+    },
+    getAll: function(){
+      return items.slice();
+    }
+  }
+}
+
 
 // Tests for #2
 var instance = itemModule();
@@ -36,3 +60,6 @@ instance.addItem('burrito');
 instance.getAll(); // ['taco', 'burrito']
 instance.removeItemAt(0); // 'taco'
 instance.getAll(); // ['burrito']
+
+
+
